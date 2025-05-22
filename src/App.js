@@ -1,24 +1,76 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useKeycloak } from '@react-keycloak/web';
+import HomePage from './pages/HomePage';
+import Usuarios from './pages/Usuarios';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import SidebarIntern from './components/SidebarIntern'; // ✅ Importa el nuevo sidebar
+import Footer from './components/Footer';
+import FormularioInternoEditar from './pages/FormularioInternoEditar';
 
 function App() {
+  const { keycloak } = useKeycloak();
+
+  const isLoggedIn = keycloak?.authenticated;
+  const roles = keycloak?.tokenParsed?.realm_access?.roles || [];
+  const isSupervisor = roles.includes('SUPERVISOR');
+  const isIntern = roles.includes('INTERN');
+
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="d-flex flex-column min-vh-100">
+        {isLoggedIn && <Header />}
+        <div className="d-flex flex-grow-1">
+          {/* Renderiza el sidebar según el rol */}
+          {isLoggedIn && isSupervisor && (
+            <Sidebar
+              isOpen={isSidebarOpen}
+              onToggleSidebar={toggleSidebar}
+              onClose={() => setSidebarOpen(false)}
+            />
+          )}
+          {isLoggedIn && isIntern && (
+            <SidebarIntern
+              isOpen={isSidebarOpen}
+              onClose={() => setSidebarOpen(false)}
+            />
+          )}
+
+          <main className="flex-grow-1 p-3">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  !isLoggedIn ? (
+                    <HomePage />
+                  ) : isSupervisor ? (
+                    <Navigate to="/usuarios" />
+                  ) : isIntern ? (
+                    <Navigate to="/avanceinterno" />
+                  ) : (
+                    <Navigate to="/" />
+                  )
+                }
+              />
+              <Route path="/usuarios" element={isSupervisor ? <Usuarios /> : <Navigate to="/" />} />
+              <Route path="/avances" element={isSupervisor ? <div>Avances</div> : <Navigate to="/" />} />
+              <Route path="/reportes" element={isSupervisor ? <div>Reportes</div> : <Navigate to="/" />} />
+              <Route path="/avanceinterno" element={isIntern ? <div>Avance Interno</div> : <Navigate to="/" />} />
+              <Route path="/FormularioInternoEditar/:id" element={isSupervisor ? <FormularioInternoEditar /> : <Navigate to="/" />}/>
+
+            </Routes>
+          </main>
+        </div>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

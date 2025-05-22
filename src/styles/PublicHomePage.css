@@ -1,0 +1,153 @@
+/* ---------------------------------- */
+/*  CONTENEDOR PRINCIPAL  */
+/* ---------------------------------- */
+.public-container {
+  background-color: #4C91A3; /* Azul suave */
+  color: #444;  /* Texto más suave */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 20px;
+}
+
+/* ---------------------------------- */
+/*  HEADER                           */
+/* ---------------------------------- */
+.header-container-public-home {
+  background-color: #4C91A3; /* Mismo color que el fondo principal */
+  width: 100%;
+  padding: 20px 0;
+}
+
+.header-content {
+  position: relative;
+  width: max-content;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+/* Logo grande y solapado */
+.header-logo-overlay-public-home {
+  position: absolute;
+  left: -75px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+/* El “pill” azul más oscuro */
+.header-banner-public-home {
+  background-color: #A9D0D7;  /* Azul más oscuro */
+  border-radius: 50px;
+  padding: 20px 60px 20px 120px;
+  min-width: 500px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Texto dentro del pill */
+.header-banner h5 {
+  margin: 0;
+  line-height: 1.2;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: white; /* Texto blanco dentro del banner */
+}
+
+/* ---------------------------------- */
+/*  BOTONES  */
+/* ---------------------------------- */
+.public-buttons {
+  display: flex;
+  gap: 30px;
+  margin-top: 80px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-yellow {
+  background-color: #A9D0D7; /* Azul claro */
+  color: #000; /* Letra negra */
+  font-size: 1.15em;
+  padding: 18px 35px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-yellow:hover {
+  background-color: #89BCC0; /* Azul ligeramente más oscuro */
+}
+
+/* ---------------------------------- */
+/*  FOOTER: imagen grande fija        */
+/* ---------------------------------- */
+.public-footer {
+  align-self: stretch;
+  padding: 40px 0 !important;
+  background-color: #4C91A3; /* Mismo color que el fondo principal */
+}
+
+.footer-empleo {
+  display: block !important;
+  width: 200px !important;
+  max-width: 90vw !important;
+  height: auto !important;
+  margin: 0 auto;
+}
+
+/* ---------------------------------- */
+/*  MEDIA QUERIES  */
+/* ---------------------------------- */
+@media (max-width: 992px) {
+  .header-content {
+    flex-direction: column;
+    width: 100%;
+  }
+  .header-logo-overlay-public-home {
+    position: static;
+    transform: none;
+    margin: 0 auto 15px;
+    width: 120px;
+    height: 120px;
+  }
+  .header-banner {
+    width: 90%;
+    padding: 15px 30px;
+    min-width: auto;
+  }
+  .header-banner h5 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .header-logo-overlay-public-home {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+  .header-banner {
+    padding: 12px 20px;
+  }
+  .header-banner h5 {
+    font-size: 1.2rem;
+  }
+  .btn-yellow {
+    font-size: 1em;
+    padding: 14px 25px;
+  }
+}
