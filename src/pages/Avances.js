@@ -8,7 +8,7 @@ const Avances = () => {
 
   return (
     <div className="container my-1">
-      <h5 className="fw-bold">Gestión de Practicantes</h5>
+      <h5 className="fw-bold">Gestión de Avances</h5>
 
       <ul className="nav nav-tabs border-bottom-0 mt-3">
         <li className="nav-item">

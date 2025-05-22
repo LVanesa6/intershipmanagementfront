@@ -12,12 +12,15 @@
     "bootstrap": "^5.3.6",
     "bootstrap-icons": "^1.13.1",
     "intershipmanagementfront": "file:",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.23",
     "keycloak-js": "^26.2.0",
     "react": "^19.1.0",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.0",
     "react-scripts": "5.0.1",
+    "recharts": "^2.15.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

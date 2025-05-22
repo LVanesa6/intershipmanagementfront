@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { useKeycloak } from '@react-keycloak/web';
 import HomePage from './pages/HomePage';
 import Usuarios from './pages/Usuarios';
+import Reportes from './pages/Reportes';
 import AvanceInterno from './pages/AvanceInterno';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
@@ -66,10 +67,10 @@ function App() {
               />
               <Route path="/usuarios" element={isSupervisor ? <Usuarios /> : <Navigate to="/" />} />
               <Route path="/avances" element={isSupervisor ? <Avances/> : <Navigate to="/" />} />
-              <Route path="/reportes" element={isSupervisor ? <div>Reportes</div> : <Navigate to="/" />} />
+              <Route path="/reportes" element={isSupervisor ? <Reportes/> : <Navigate to="/" />} />
               <Route path="/avanceinterno" element={isIntern ? <AvanceInterno /> : <Navigate to="/" />} />
               <Route path="/FormularioInternoEditar/:id" element={isSupervisor ? <FormularioInternoEditar /> : <Navigate to="/" />}/>
-               <Route path="/verUsuarios" element={isSupervisor ? <VerUsuarios /> : <Navigate to="/" />}/>
+              <Route path="/verUsuarios" element={isSupervisor ? <VerUsuarios /> : <Navigate to="/" />}/>
 
             </Routes>
           </main>
