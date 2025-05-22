@@ -83,8 +83,7 @@ const FormularioInternoEditar = () => {
 
   // Función para regresar atrás
   const handleBack = () => {
-    navigate(-1); // vuelve a la página anterior
-    // o navigate('/usuarios'); // si prefieres ruta fija
+     navigate('/VerUsuarios');
   };
 
   // Aquí enviamos PUT para modificar
@@ -105,7 +104,7 @@ const FormularioInternoEditar = () => {
         headers: { Authorization: `Bearer ${keycloak?.token}` }
       });
       alert('Practicante actualizado exitosamente');
-      navigate('/usuarios'); // O donde quieras redirigir luego de actualizar
+      navigate('/VerUsuarios'); // O donde quieras redirigir luego de actualizar
     } catch (error) {
       console.error('Error al actualizar practicante:', error);
       alert('Hubo un error al actualizar el practicante');

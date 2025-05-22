@@ -78,7 +78,7 @@ const FormularioInterno = () => {
         headers: { Authorization: `Bearer ${keycloak?.token}` }
       });
       alert('Practicante registrado exitosamente');
-      //navigate('/lista-internos');
+      navigate('/usuarios');
     } catch (error) {
       console.error('Error al registrar practicante:', error);
       alert('Hubo un error al registrar el practicante');

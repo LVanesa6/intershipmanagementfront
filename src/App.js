@@ -3,11 +3,16 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { useKeycloak } from '@react-keycloak/web';
 import HomePage from './pages/HomePage';
 import Usuarios from './pages/Usuarios';
+import AvanceInterno from './pages/AvanceInterno';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
-import SidebarIntern from './components/SidebarIntern'; // ✅ Importa el nuevo sidebar
+import SidebarIntern from './components/SidebarIntern'; 
 import Footer from './components/Footer';
 import FormularioInternoEditar from './pages/FormularioInternoEditar';
+
+import VerUsuarios from './pages/VerAvances';
+import Avances from './pages/Avances';
+
 
 function App() {
   const { keycloak } = useKeycloak();
@@ -60,10 +65,11 @@ function App() {
                 }
               />
               <Route path="/usuarios" element={isSupervisor ? <Usuarios /> : <Navigate to="/" />} />
-              <Route path="/avances" element={isSupervisor ? <div>Avances</div> : <Navigate to="/" />} />
+              <Route path="/avances" element={isSupervisor ? <Avances/> : <Navigate to="/" />} />
               <Route path="/reportes" element={isSupervisor ? <div>Reportes</div> : <Navigate to="/" />} />
-              <Route path="/avanceinterno" element={isIntern ? <div>Avance Interno</div> : <Navigate to="/" />} />
+              <Route path="/avanceinterno" element={isIntern ? <AvanceInterno /> : <Navigate to="/" />} />
               <Route path="/FormularioInternoEditar/:id" element={isSupervisor ? <FormularioInternoEditar /> : <Navigate to="/" />}/>
+               <Route path="/verUsuarios" element={isSupervisor ? <VerUsuarios /> : <Navigate to="/" />}/>
 
             </Routes>
           </main>
